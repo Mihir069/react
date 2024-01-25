@@ -1,0 +1,67 @@
+[
+    {
+        "id":"1",
+        "title":"Kidology",
+        "img":"/img/toy1.png",
+        "discription":"Kidology Car Race Tracks Toy | Car Adventure Toy for Boys, Girls & Kids | Playset City Rescue Toddlers Toy Car | Pre Educational Learning Toy Puzzle Car Gift for Kids (Regular)",
+        "price":1599,
+        "inCart":false
+    },
+    {
+        "id":"2",
+        "title":"G.FIDEL",
+        "img":"/img/toy2.png",
+        "discription":"G.FIDEL Set of 7 Pixar Cars 3 Lightning McQueen Jackson Storm Mack Uncle Truck 1:55 Alloy Toy Truck Cars Best Toy Gift for Kids- Pack of 7, Multicolor",
+        "price":1699,
+        "inCart":false
+    },
+    {
+        "id":"3",
+        "title":"Mirana",
+        "img":"/img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    },
+    {
+        "id":"4",
+        "title":"Mirana",
+        "img":"./img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    },
+    {
+        "id":"5",
+        "title":"Mirana",
+        "img":"./img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    },
+    {
+        "id":"6",
+        "title":"Mirana",
+        "img":"./img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    },
+    {
+        "id":"7",
+        "title":"Mirana",
+        "img":"./img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    },
+    {
+        "id":"8",
+        "title":"Mirana",
+        "img":"./img/toy3.png",
+        "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
+        "price":1349,
+        "inCart":false
+    }
+    
+]
