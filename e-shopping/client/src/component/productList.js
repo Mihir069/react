@@ -73,7 +73,7 @@ const ItemView = styled.div`
 
 const ProductList = () => {
   const [storeState, setStoreState] = useState([]);
-  const [viewItem, setViewItem] = useState(null);
+  const [viewItem, setViewItem] = useState(false);
   const { addToCart } = useCart();
 
   const getProductList = () => {
@@ -92,7 +92,7 @@ const ProductList = () => {
 
   const handleAddToCart = () => {
     addToCart(viewItem);
-    setViewItem(null);
+    setViewItem(false);
   };
 
   return (
@@ -117,7 +117,7 @@ const ProductList = () => {
           <ItemView>
             <h2>{viewItem.title}</h2>
             <ItemImage src={viewItem.img} alt={viewItem.title} width="150px" />
-            <Button onClick={() => setViewItem(null)}>Continue Shopping</Button>
+            <Button onClick={() => setViewItem(false)}>Continue Shopping</Button>
             <Button onClick={handleAddToCart}>Add to Cart</Button>
           </ItemView>
         </ItemViewContainer>

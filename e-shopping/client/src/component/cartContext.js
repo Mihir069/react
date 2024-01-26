@@ -16,17 +16,15 @@ export const CartProvider = ({ children }) => {
       headers:{
         'Content-Type':'application/json',
       },
-      body: JSON.stringify({item}),
+      data:{
+        item
+      }
     })
       .then((res)=>res.json())
       .then((data)=>{
         setCartItems(data)
+        console.log(data)
       })
-      .catch((error)=>{
-        console.log('error!!!');
-      })
-
-    // setCartItems([...cartItems, item]);
   };
 
   const removeFromCart = (itemId) => {

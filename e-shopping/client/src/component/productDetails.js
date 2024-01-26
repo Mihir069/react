@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
-// import Products from "../dataBase";
 import { useCart } from "./cartContext";
 
 const ShopContainer = styled.div`
@@ -92,11 +91,11 @@ const ProductDetails = () => {
 
   useEffect(()=>{
     fetch('http://localhost:3001/products')
-        .then((res)=>(res.json()))
-        .then((data)=>{
-          const product = data.find((item) => item.id === id);
-        setProduct(product)
-        })
+      .then((res)=>(res.json()))
+      .then((data)=>{
+        const product = data.find((item) => item.id === id);
+      setProduct(product)
+      })
   },[id])
 
 
