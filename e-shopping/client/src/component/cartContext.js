@@ -6,12 +6,11 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // fetch('http://localhost:3001/products')
-    //   .then((res)=>res.json())
-    //   .then((data)=>{
-    //     console.log(data)
-    //     setCartItems(data)
-    //   })
+    fetch('http://localhost:3001/get-cart')
+      .then((res)=>res.json())
+      .then((data)=>{
+        setCartItems(data)
+      })
   },[]);
 
 
@@ -50,10 +49,13 @@ export const CartProvider = ({ children }) => {
     })
     .then((res)=>res.json())
     .then((data)=>{
-      setCartItems(data)
+      setCartItems([])
     })
     // setCartItems([]);
   };
+
+
+
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>

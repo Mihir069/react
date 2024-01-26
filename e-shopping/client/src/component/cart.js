@@ -64,8 +64,8 @@ const Cart = () => {
   return (
     <CartContainer>
       <h2>Shopping Cart</h2>
-      {cartItems.map((item) => (
-        <CartItem key={item.id}>
+      {cartItems.map((item, index) => (
+        <CartItem key={`${item.id}'_'${index}`}>
           <ItemDetails>
             <ItemTitle>{item.title}</ItemTitle>
             <ItemPrice>${item.price}</ItemPrice>

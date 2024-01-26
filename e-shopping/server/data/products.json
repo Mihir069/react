@@ -5,7 +5,9 @@
         "img":"/img/toy1.png",
         "discription":"Kidology Car Race Tracks Toy | Car Adventure Toy for Boys, Girls & Kids | Playset City Rescue Toddlers Toy Car | Pre Educational Learning Toy Puzzle Car Gift for Kids (Regular)",
         "price":1599,
-        "inCart":false
+        "inCart":false,
+        "quantity": 1
+        
     },
     {
         "id":"2",
@@ -13,7 +15,8 @@
         "img":"/img/toy2.png",
         "discription":"G.FIDEL Set of 7 Pixar Cars 3 Lightning McQueen Jackson Storm Mack Uncle Truck 1:55 Alloy Toy Truck Cars Best Toy Gift for Kids- Pack of 7, Multicolor",
         "price":1699,
-        "inCart":false
+        "inCart":false,
+        "quantity": 1
     },
     {
         "id":"3",
@@ -21,7 +24,8 @@
         "img":"/img/toy3.png",
         "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
         "price":1349,
-        "inCart":false
+        "inCart":false,
+        "quantity": 1
     },
     {
         "id":"4",
@@ -29,7 +33,8 @@
         "img":"./img/toy3.png",
         "discription":"Mirana C-Type USB Rechargeable Duster RC Car | ATV RC Car with Nitro Boost | 2WD Rock Crawler | Fun RC Toy Gift for Kids (2 Wheel Drive, Green)",
         "price":1349,
-        "inCart":false
+        "inCart":false,
+        "quantity": 1
     },
     {
         "id":"5",
