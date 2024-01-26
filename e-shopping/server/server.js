@@ -5,7 +5,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-const cart = [];
+let cart = [];
  
 const Products = require('./data/products.json');
 
@@ -20,14 +20,21 @@ server.post('/update-cart', (req,res) => {
     return res.json(cart);
 });
 
-server.delete('/delete-cart/:id', (req,res)=> {
-    const {itemId} = req.params.id;
-    console.log('Delete the item',itemId)
-    const updatedCart = cartItems.filter((item) => item.id !== itemId); 
-    cart = updatedCart
-    console.log('updated',cart)
+server.delete('/delete-cart/:id', (req, res) => {
+    const itemId = req.params.id;
+    console.log('Delete the item', itemId);
+    const updatedCart = [];
+    cart.forEach((item)=>{
+        if(item.id !== itemId){
+            updatedCart.push(item)
+        }
+    });
+    cart = updatedCart;
+
+    console.log('updated', cart);
     return res.json(cart);
 });
+
 
 server.delete('/delete-all', (req,res) => {
     cart = [];

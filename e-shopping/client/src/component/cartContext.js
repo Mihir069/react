@@ -6,7 +6,12 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-
+    // fetch('http://localhost:3001/products')
+    //   .then((res)=>res.json())
+    //   .then((data)=>{
+    //     console.log(data)
+    //     setCartItems(data)
+    //   })
   },[]);
 
 
