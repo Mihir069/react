@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import '../index.css';
+import { useCart } from './cartContext';
 
 const HeaderContainer = styled.header`
   align-items: center;
@@ -50,7 +51,16 @@ const Title = styled.div`
   padding:12px;
   font-weight: 800;
 `
+const CartCount = styled.div`
+  background-color: #000000;
+  color: #ffffff;
+  padding: 2px;
+  display: inline;
+  border-radius: 100%;
+  margin-left: 6px;
+`
 const Header = ()=> {
+  const {cartItems}  = useCart()
   return (
     <HeaderContainer>
       <NavContainer>
@@ -77,7 +87,9 @@ const Header = ()=> {
           </ul>
         </LeftContainer>
         <Link to='/cart'>
-          <Button><Icon src='./img/icon1.png' alt='icon1'/> Cart</Button>
+          <Button><Icon src='./img/icon1.png' alt='icon1'/> Cart  
+          {<CartCount>{cartItems.length}</CartCount>}
+          </Button>
         </Link>
       </NavContainer>
       <HeaderTitle>
