@@ -16,9 +16,9 @@ export const CartProvider = ({ children }) => {
       headers:{
         'Content-Type':'application/json',
       },
-      data:{
+      body: JSON.stringify({
         item
-      }
+      })
     })
       .then((res)=>res.json())
       .then((data)=>{

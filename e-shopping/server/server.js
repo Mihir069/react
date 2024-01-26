@@ -14,10 +14,10 @@ server.get('/products', (req, res) => {
 });
 server.post('/update-cart', (req,res) => {
     const {item} = req.body;
-    const addToProduct = Products.find((Product)=>Product.id === item);
+    console.log('item recvived',item)
+    const addToProduct = Products.find((Product)=>Product.id === item.id);
     cart.push(addToProduct);
     return res.json(cart);
-    console.log(cart)
 });
 
 // server.delete('/delete-cart/:id', ()=> {
