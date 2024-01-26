@@ -64,11 +64,11 @@ const Cart = () => {
   return (
     <CartContainer>
       <h2>Shopping Cart</h2>
-      {cartItems && cartItems.map((item) => (
-        <CartItem key={item && item.id}>
+      {cartItems.map((item) => (
+        <CartItem key={item.id}>
           <ItemDetails>
-            <ItemTitle>{item && item.title}</ItemTitle>
-            <ItemPrice>${item && item.price}</ItemPrice>
+            <ItemTitle>{item.title}</ItemTitle>
+            <ItemPrice>${item.price}</ItemPrice>
           </ItemDetails>
           <ActionButtons>
             <RemoveButton onClick={() => removeFromCart(item.id)}>Remove</RemoveButton>

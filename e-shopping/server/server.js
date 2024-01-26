@@ -15,19 +15,24 @@ server.get('/products', (req, res) => {
 server.post('/update-cart', (req,res) => {
     const {item} = req.body;
     console.log('item recvived',item)
-    const addToProduct = Products.find((Product)=>Product.id === item.id);
-    cart.push(addToProduct);
+    const addProduct = Products.find((Product)=>Product.id === item.id);
+    cart.push(addProduct);
     return res.json(cart);
 });
 
-// server.delete('/delete-cart/:id', ()=> {
-//     return res.json(cart);
-// });
+server.delete('/delete-cart/:id', (req,res)=> {
+    const {itemId} = req.params.id;
+    console.log('Delete the item',itemId)
+    const updatedCart = cartItems.filter((item) => item.id !== itemId); 
+    cart = updatedCart
+    console.log('updated',cart)
+    return res.json(cart);
+});
 
-// server.delete('/delete-all', () => {
-//     cart = [];
-//     return res.json([]);
-// });
+server.delete('/delete-all', (req,res) => {
+    cart = [];
+    return res.json([]);
+});
 
 const PORT = 3001;
 server.listen(PORT, () => {

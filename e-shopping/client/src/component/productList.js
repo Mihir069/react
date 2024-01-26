@@ -9,7 +9,7 @@ const ShopContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Item = styled.div`
+const ProductItem = styled.div`
   border: 1px solid #ddd;
   padding: 10px;
   margin: 10px;
@@ -26,12 +26,12 @@ const Item = styled.div`
   }
 `;
 
-const ItemImage = styled.img`
+const ProductImage = styled.img`
   margin-bottom: 10px;
   height: 150px;
 `;
 
-const Button = styled.button`
+const ProductButton = styled.button`
   padding: 9px 22px;
   font-size: 16px;
   border: 2px solid #000000;
@@ -47,7 +47,7 @@ const Button = styled.button`
   }
 `;
 
-const ItemViewContainer = styled.div`
+const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@ const ItemViewContainer = styled.div`
   justify-content: center;
 `;
 
-const ItemView = styled.div`
+const ProductDetailView = styled.div`
   border: 1px solid #ddd;
   padding: 50px;
   margin: 50px;
@@ -70,57 +70,56 @@ const ItemView = styled.div`
   background-color: #ffffff;
 `;
 
-
 const ProductList = () => {
-  const [storeState, setStoreState] = useState([]);
-  const [viewItem, setViewItem] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(false);
   const { addToCart } = useCart();
 
-  const getProductList = () => {
+  const fetchProductList = () => {
     fetch('http://localhost:3001/products')
-        .then((res)=>res.json())
-        .then((json)=>setStoreState(json))
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
   };
 
   useEffect(() => {
-    getProductList();
+    fetchProductList();
   }, []);
 
-  const handleClick = (item) => {
-    setViewItem(item);
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
   };
 
   const handleAddToCart = () => {
-    addToCart(viewItem);
-    setViewItem(false);
+    addToCart(selectedProduct);
+    setSelectedProduct(false);
   };
 
   return (
     <>
       <ShopContainer>
-        {storeState.map((item) => (
-          <Item key={item.id}>
-            <Link to={`/product-detail/${item.id}`}>
-              <ItemImage src={item.img} alt={item.title} width="150px" />
+        {products.map((product) => (
+          <ProductItem key={product.id}>
+            <Link to={`/product-detail/${product.id}`}>
+              <ProductImage src={product.img} alt={product.title} width="150px" />
             </Link>
-            <h3>{item.title}</h3>
-            <p>${item.price}</p>
+            <h3>{product.title}</h3>
+            <p>${product.price}</p>
             <Link to="/">
-              <Button onClick={() => handleClick(item)}>View Details</Button>
+              <ProductButton onClick={() => handleProductClick(product)}>View Details</ProductButton>
             </Link>
-          </Item>
+          </ProductItem>
         ))}
       </ShopContainer>
 
-      {viewItem && (
-        <ItemViewContainer>
-          <ItemView>
-            <h2>{viewItem.title}</h2>
-            <ItemImage src={viewItem.img} alt={viewItem.title} width="150px" />
-            <Button onClick={() => setViewItem(false)}>Continue Shopping</Button>
-            <Button onClick={handleAddToCart}>Add to Cart</Button>
-          </ItemView>
-        </ItemViewContainer>
+      {selectedProduct && (
+        <ModalContainer>
+          <ProductDetailView>
+            <h2>{selectedProduct.title}</h2>
+            <ProductImage src={selectedProduct.img} alt={selectedProduct.title} width="150px" />
+            <ProductButton onClick={() => setSelectedProduct(false)}>Continue Shopping</ProductButton>
+            <ProductButton onClick={handleAddToCart}>Add to Cart</ProductButton>
+          </ProductDetailView>
+        </ModalContainer>
       )}
     </>
   );

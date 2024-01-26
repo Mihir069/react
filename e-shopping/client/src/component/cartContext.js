@@ -28,15 +28,26 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (itemId) => {
-
-
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
+    fetch(`http://localhost:3001/delete-cart/${itemId}`,{
+      method:'DELETE'
+    })
+    .then((res)=>res.json())
+    .then((data)=>{
+      setCartItems(data)
+    })
+    // const updatedCart = cartItems.filter((item) => item.id !== itemId);
+    // setCartItems(updatedCart);
   };
 
   const clearCart = () => {
-    
-    setCartItems([]);
+    fetch('http://localhost:3001/delete-all',{
+      method:'DELETE'
+    })
+    .then((res)=>res.json())
+    .then((data)=>{
+      setCartItems(data)
+    })
+    // setCartItems([]);
   };
 
   return (
