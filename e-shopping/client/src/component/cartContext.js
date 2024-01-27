@@ -38,6 +38,7 @@ export const CartProvider = ({ children }) => {
     .then((res)=>res.json())
     .then((data)=>{
       setCartItems(data)
+      console.log(data);
     })
     // const updatedCart = cartItems.filter((item) => item.id !== itemId);
     // setCartItems(updatedCart);
