@@ -4,17 +4,24 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [isItemInCart,setIsItemIncart] = useState({})
 
   useEffect(() => {
     fetch('http://localhost:3001/get-cart')
       .then((res)=>res.json())
       .then((data)=>{
         setCartItems(data)
+        const itemInCart = {};
+        data.forEach((item)=>{
+          itemInCart[item.id] = true;
+        });
+        setIsItemIncart(itemInCart)
       })
   },[]);
 
 
   const addToCart = (item) => {
+    console.log("Item to add",item)
     fetch('http://localhost:3001/update-cart',{
       method: 'POST',
       headers:{
@@ -27,8 +34,10 @@ export const CartProvider = ({ children }) => {
       .then((res)=>res.json())
       .then((data)=>{
         setCartItems(data)
+        setIsItemIncart((prevCart)=>({...prevCart,[item.id]:true}))
         console.log(data)
       })
+      .catch(error => console.error("Error adding to cart:", error));
   };
 
   const removeFromCart = (itemId) => {
@@ -38,6 +47,7 @@ export const CartProvider = ({ children }) => {
     .then((res)=>res.json())
     .then((data)=>{
       setCartItems(data)
+      setIsItemIncart((prevCart)=>({...prevCart,[itemId]:false}))
       console.log(data);
     })
     // const updatedCart = cartItems.filter((item) => item.id !== itemId);
@@ -51,6 +61,7 @@ export const CartProvider = ({ children }) => {
     .then((res)=>res.json())
     .then((data)=>{
       setCartItems([])
+      setIsItemIncart({});
     })
     // setCartItems([]);
   };
@@ -59,7 +70,7 @@ export const CartProvider = ({ children }) => {
 
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{isItemInCart, cartItems, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

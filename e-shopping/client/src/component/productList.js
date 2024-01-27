@@ -73,7 +73,7 @@ const ProductDetailView = styled.div`
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, isItemInCart } = useCart();
 
   const fetchProductList = () => {
     fetch('http://localhost:3001/products')
@@ -90,8 +90,10 @@ const ProductList = () => {
   };
 
   const handleAddToCart = () => {
-    addToCart(selectedProduct);
-    setSelectedProduct(false);
+    if (!isItemInCart[selectedProduct.id]) {
+      addToCart(selectedProduct);
+      setSelectedProduct(false);
+    }
   };
 
   return (
@@ -105,7 +107,14 @@ const ProductList = () => {
             <h3>{product.title}</h3>
             <p>${product.price}</p>
             <Link to="/">
-              <ProductButton onClick={() => handleProductClick(product)}>View Details</ProductButton>
+              {selectedProduct && selectedProduct.id === product.id &&
+               isItemInCart[product.id] ? (
+                <ProductButton disabled>In Cart</ProductButton>
+              ) : (
+                <ProductButton onClick={() => handleProductClick(product)}>
+                  {isItemInCart[product.id] ? "In Cart" : "View Details"}
+                </ProductButton>
+              )}
             </Link>
           </ProductItem>
         ))}
@@ -117,7 +126,7 @@ const ProductList = () => {
             <h2>{selectedProduct.title}</h2>
             <ProductImage src={selectedProduct.img} alt={selectedProduct.title} width="150px" />
             <ProductButton onClick={() => setSelectedProduct(false)}>Continue Shopping</ProductButton>
-            <ProductButton onClick={handleAddToCart}>Add to Cart</ProductButton>
+            <ProductButton onClick={handleAddToCart}>{isItemInCart[selectedProduct.id] ? "In Cart" : "Add to cart"}</ProductButton>
           </ProductDetailView>
         </ModalContainer>
       )}
