@@ -23,13 +23,22 @@ server.post('/update-cart', (req,res) => {
     return res.json(cart);
 });
 
-server.put('/update-cart/:id', ()=>{
-    const {item} = req.body;
-    console.log('item recvived',item)
-    const addProduct = Products.find((Product)=>Product.id === item.id);
-    cart.push(addProduct);
-    return res.json(cart);
 
+
+server.put('/update-cart', (req,res)=>{
+    const { itemId, action } = req.body;
+
+    const currentItemIndex = cart.findIndex((cartItem) => cartItem.id === itemId);
+    if (currentItemIndex !== -1) {
+        if (action === 'increment') {
+            cart[currentItemIndex].quantity += 1;
+            console.log(cart[currentItemIndex].price)
+        } else if (action === 'decrement' && cart[currentItemIndex].quantity > 1) {
+            cart[currentItemIndex].quantity -= 1;
+        }
+
+        return res.json(cart);
+    }
 });
 
 server.delete('/delete-cart/:id', (req, res) => {

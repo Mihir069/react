@@ -57,9 +57,22 @@ const ClearButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
 `;
+const QuantityButton = styled.button`
+  margin-right: 10px;
+  padding: 0px 10px 0 10px;;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+const ItemQuantity = styled.div`
+  margin: 0px;
+`
 
 const Cart = () => {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart, clearCart, increament, decreament } = useCart();
+
 
   return (
     <CartContainer>
@@ -68,9 +81,12 @@ const Cart = () => {
         <CartItem key={`${item.id}'_'${index}`}>
           <ItemDetails>
             <ItemTitle>{item.title}</ItemTitle>
-            <ItemPrice>${item.price}</ItemPrice>
+            <ItemPrice>${item.price && (item.price * item.quantity)}</ItemPrice>
+            <ItemQuantity>Quantity: {item.quantity || 1}</ItemQuantity>
           </ItemDetails>
           <ActionButtons>
+            <QuantityButton onClick={()=>decreament(item.id)}>-</QuantityButton>
+            <QuantityButton onClick={() =>increament(item.id)}>+</QuantityButton>
             <RemoveButton onClick={() => removeFromCart(item.id)}>Remove</RemoveButton>
           </ActionButtons>
         </CartItem>

@@ -66,11 +66,39 @@ export const CartProvider = ({ children }) => {
     // setCartItems([]);
   };
 
+  const increament = (itemId) => {
+    fetch(`http://localhost:3001/update-cart`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ itemId, action: 'increment' }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('increament')
+          setCartItems(data)
+        })
+};
 
+const decreament = (itemId) => {
+    fetch(`http://localhost:3001/update-cart`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ itemId, action: 'decrement' }),
+    })
+        .then((res) => res.json())
+        .then((data) =>{
+          console.log('decreament', )
+          setCartItems(data)
+        })
+};
 
 
   return (
-    <CartContext.Provider value={{isItemInCart, cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{isItemInCart, cartItems, addToCart, removeFromCart, clearCart, increament, decreament }}>
       {children}
     </CartContext.Provider>
   );
