@@ -86,7 +86,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
-  const { addToCart } = useCart();
+  const { addToCart,isItemInCart } = useCart();
 
 
   useEffect(()=>{
@@ -100,7 +100,9 @@ const ProductDetails = () => {
 
 
   const handleAddToCart = () => {
-    addToCart(product);
+    if (!isItemInCart[product.id]) {
+      addToCart(product);
+    }
   };
 
   if(product === null) return<h1>No item to show</h1>;
@@ -114,7 +116,7 @@ const ProductDetails = () => {
         <Description>{product.discription}</Description>
         <Price>${product.price}</Price>
         <ButtonContainer>
-          <Button onClick={handleAddToCart}>Add to Cart</Button>
+          <Button onClick={handleAddToCart}>{isItemInCart[product.id] ? "In Cart" : "Add to cart"}</Button>
           <Link to="/">
             <ContinueShoppingButton>Continue Shopping</ContinueShoppingButton>
           </Link>
