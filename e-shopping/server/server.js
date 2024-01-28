@@ -17,7 +17,6 @@ server.get('/get-cart',(req,res)=>{
 })
 server.post('/update-cart', (req,res) => {
     const {item} = req.body;
-    console.log('item recvived',item)
     const addProduct = Products.find((Product)=>Product.id === item.id);
     cart.push(addProduct);
     return res.json(cart);
