@@ -73,9 +73,11 @@ const ItemQuantity = styled.div`
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart, increament, decreament } = useCart();
 
-  const TotalAmount = (item)=>{
+  const totalAmount = (item)=>{
     return item.price * item.quantity;
   }
+
+  const SubTotal = cartItems.reduce((total, item)=> total + totalAmount(item),0);
   return (
     <CartContainer>
       <h2>Shopping Cart</h2>
@@ -83,7 +85,7 @@ const Cart = () => {
         <CartItem key={`${item.id}'_'${index}`}>
           <ItemDetails>
             <ItemTitle>{item.title}</ItemTitle>
-            <ItemPrice>${item.price && (item.price * item.quantity)}</ItemPrice>
+            <ItemPrice>${totalAmount(item)}</ItemPrice>
             <ItemQuantity>Quantity: {item.quantity || 1}</ItemQuantity>
           </ItemDetails>
           <ActionButtons>
@@ -95,6 +97,7 @@ const Cart = () => {
       ))}
       {cartItems.length > 0 && (
         <>
+          <ItemPrice>SubTotal : ${SubTotal}</ItemPrice>
           <ClearButton onClick={clearCart}>Clear Cart</ClearButton>
         </>
       )}
