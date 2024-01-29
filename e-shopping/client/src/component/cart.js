@@ -58,7 +58,7 @@ const ClearButton = styled.button`
   cursor: pointer;
 `;
 const QuantityButton = styled.button`
-  margin-right: 10px;
+  margin: 10px;
   padding: 0px 10px 0 10px;;
   background-color: #3498db;
   color: #fff;
@@ -85,11 +85,13 @@ const Cart = () => {
         <CartItem key={`${item.id}'_'${index}`}>
           <ItemDetails>
             <ItemTitle>{item.title}</ItemTitle>
+          </ItemDetails>
+          <ItemDetails>
             <ItemPrice>${totalAmount(item)}</ItemPrice>
-            <ItemQuantity>Quantity: {item.quantity || 1}</ItemQuantity>
           </ItemDetails>
           <ActionButtons>
             <QuantityButton onClick={()=>decreament(item)}>-</QuantityButton>
+            <ItemQuantity>{item.quantity || 1}</ItemQuantity>
             <QuantityButton onClick={() =>increament(item)}>+</QuantityButton>
             <RemoveButton onClick={() => removeFromCart(item.id)}>Remove</RemoveButton>
           </ActionButtons>
