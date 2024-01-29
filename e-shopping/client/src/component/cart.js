@@ -73,7 +73,9 @@ const ItemQuantity = styled.div`
 const Cart = () => {
   const { cartItems, removeFromCart, clearCart, increament, decreament } = useCart();
 
-
+  const TotalAmount = (item)=>{
+    return item.price * item.quantity;
+  }
   return (
     <CartContainer>
       <h2>Shopping Cart</h2>
