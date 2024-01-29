@@ -79,6 +79,9 @@ export const CartProvider = ({ children }) => {
         })
   };
   const decreament = (item) => {
+    if(item.quantity === 1){
+      return;
+    }
     const product = { ...item, quantity: item.quantity - 1 };
       fetch(`http://localhost:3001/update-cart`, {
           method: 'PUT',
@@ -87,12 +90,12 @@ export const CartProvider = ({ children }) => {
           },
           body: JSON.stringify({ product}),
       })
-          .then((res) => res.json())
-          .then((data) =>{
-            console.log('decreament')
-            setCartItems(data)
-            
-          })
+        .then((res) => res.json())
+        .then((data) =>{
+          console.log('decreament')
+          setCartItems(data)
+          
+        })
   };
   return (
     <CartContext.Provider value={{isItemInCart, cartItems, addToCart, removeFromCart, clearCart, increament, decreament }}>
