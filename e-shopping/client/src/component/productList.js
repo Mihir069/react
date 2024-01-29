@@ -40,10 +40,9 @@ const ProductButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
-
   &:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #e6e6e6;
+    transform: scale(1.05);
   }
 `;
 
@@ -69,6 +68,7 @@ const ProductDetailView = styled.div`
   box-sizing: border-box;
   background-color: #ffffff;
 `;
+
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -112,7 +112,7 @@ const ProductList = () => {
                 <ProductButton disabled>In Cart</ProductButton>
               ) : (
                 <ProductButton onClick={() => handleProductClick(product)}>
-                  {isItemInCart[product.id] ? "In Cart" : "View Details"}
+                  {isItemInCart[product.id] ? <Link to='/cart' > {'Go to cart'}</Link>: 'View Item'}
                 </ProductButton>
               )}
             </Link>

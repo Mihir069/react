@@ -99,8 +99,10 @@ const Cart = () => {
       ))}
       {cartItems.length > 0 && (
         <>
-          <ItemPrice>SubTotal : ${SubTotal}</ItemPrice>
-          <ClearButton onClick={clearCart}>Clear Cart</ClearButton>
+          <CartItem>
+            <ItemPrice>SubTotal : ${SubTotal}</ItemPrice>
+            <ClearButton onClick={clearCart}>Clear Cart</ClearButton>
+          </CartItem>
         </>
       )}
     </CartContainer>
