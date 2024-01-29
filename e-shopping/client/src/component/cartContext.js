@@ -18,8 +18,6 @@ export const CartProvider = ({ children }) => {
         setIsItemIncart(itemInCart)
       })
   },[]);
-
-
   const addToCart = (item) => {
     console.log("Item to add",item)
     fetch('http://localhost:3001/update-cart',{
@@ -53,7 +51,6 @@ export const CartProvider = ({ children }) => {
     // const updatedCart = cartItems.filter((item) => item.id !== itemId);
     // setCartItems(updatedCart);
   };
-
   const clearCart = () => {
     fetch('http://localhost:3001/delete-all',{
       method:'DELETE'
@@ -65,45 +62,44 @@ export const CartProvider = ({ children }) => {
     })
     // setCartItems([]);
   };
-
-  const increament = (itemId) => {
+  const increament = (item) => {
+  
+    const product = { ...item, quantity: item.quantity + 1 };
     fetch(`http://localhost:3001/update-cart`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ itemId, action: 'increment' }),
+        body: JSON.stringify({product }),
     })
         .then((res) => res.json())
         .then((data) => {
           console.log('increament')
           setCartItems(data)
         })
-};
-
-const decreament = (itemId) => {
-    fetch(`http://localhost:3001/update-cart`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ itemId, action: 'decrement' }),
-    })
-        .then((res) => res.json())
-        .then((data) =>{
-          console.log('decreament', )
-          setCartItems(data)
-        })
-};
-
-
+  };
+  const decreament = (item) => {
+    const product = { ...item, quantity: item.quantity - 1 };
+      fetch(`http://localhost:3001/update-cart`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ product}),
+      })
+          .then((res) => res.json())
+          .then((data) =>{
+            console.log('decreament')
+            setCartItems(data)
+            
+          })
+  };
   return (
     <CartContext.Provider value={{isItemInCart, cartItems, addToCart, removeFromCart, clearCart, increament, decreament }}>
       {children}
     </CartContext.Provider>
   );
 };
-
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {

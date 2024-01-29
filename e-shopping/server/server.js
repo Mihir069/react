@@ -10,9 +10,12 @@ let cart = [];
 const Products = require('./data/products.json');
 
 server.get('/products', (req, res) => {
+
+
     res.json(Products);
 });
 server.get('/get-cart',(req,res)=>{
+    
     res.json(cart);
 })
 server.post('/update-cart', (req,res) => {
@@ -25,19 +28,23 @@ server.post('/update-cart', (req,res) => {
 
 
 server.put('/update-cart', (req,res)=>{
-    const { itemId, action } = req.body;
+    const { product, action } = req.body;
+console.log(product, '-----')
+    const currentItemIndex = cart.findIndex((cartItem) => cartItem.id === product.id);
+    if(currentItemIndex !== -1){
+        cart[currentItemIndex] = product;
+        return res.json(cart)
+     }
+    // if (currentItemIndex !== -1) {
+    //     if (action === 'increment') {
+    //         cart[currentItemIndex].quantity += 1;
+    //         console.log(cart[currentItemIndex].price)
+    //     } else if (action === 'decrement' && cart[currentItemIndex].quantity > 1) {
+    //         cart[currentItemIndex].quantity -= 1;
+    //     }
 
-    const currentItemIndex = cart.findIndex((cartItem) => cartItem.id === itemId);
-    if (currentItemIndex !== -1) {
-        if (action === 'increment') {
-            cart[currentItemIndex].quantity += 1;
-            console.log(cart[currentItemIndex].price)
-        } else if (action === 'decrement' && cart[currentItemIndex].quantity > 1) {
-            cart[currentItemIndex].quantity -= 1;
-        }
-
-        return res.json(cart);
-    }
+    //     return res.json(cart);
+    // }
 });
 
 server.delete('/delete-cart/:id', (req, res) => {

@@ -85,8 +85,8 @@ const Cart = () => {
             <ItemQuantity>Quantity: {item.quantity || 1}</ItemQuantity>
           </ItemDetails>
           <ActionButtons>
-            <QuantityButton onClick={()=>decreament(item.id)}>-</QuantityButton>
-            <QuantityButton onClick={() =>increament(item.id)}>+</QuantityButton>
+            <QuantityButton onClick={()=>decreament(item)}>-</QuantityButton>
+            <QuantityButton onClick={() =>increament(item)}>+</QuantityButton>
             <RemoveButton onClick={() => removeFromCart(item.id)}>Remove</RemoveButton>
           </ActionButtons>
         </CartItem>
