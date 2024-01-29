@@ -29,7 +29,7 @@ server.post('/update-cart', (req,res) => {
 
 server.put('/update-cart', (req,res)=>{
     const { product, action } = req.body;
-console.log(product, '-----')
+    console.log(product, '-----')
     const currentItemIndex = cart.findIndex((cartItem) => cartItem.id === product.id);
     if(currentItemIndex !== -1){
         cart[currentItemIndex] = product;
