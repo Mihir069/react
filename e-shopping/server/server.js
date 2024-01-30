@@ -34,7 +34,8 @@ server.put('/update-cart', (req,res)=>{
     if(currentItemIndex !== -1){
         cart[currentItemIndex] = product;
         return res.json(cart)
-     }
+        console.log(product)
+    }
     // if (currentItemIndex !== -1) {
     //     if (action === 'increment') {
     //         cart[currentItemIndex].quantity += 1;
