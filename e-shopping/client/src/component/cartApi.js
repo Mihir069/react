@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const cartApi = () =>{
-    
+
+const   CartApi = () =>{
+    const [cartItems,setCartItems] = useState([]);
+    const [isItemInCart,setIsItemIncart] = useState({})
 }
 export default cartApi;
