@@ -60,6 +60,14 @@ const   CartApi = () =>{
         const product = { ...item, quantity: item.quantity + 1 };
         return updateCart('http://localhost:3001/update-cart', 'PUT', { product });
     };
-    return {cartItems,isItemInCart,addToCart,removeFromCart,clearCart,increment};
+    const decrement = (item) => {
+        if (item.quantity === 1) {
+          return Promise.resolve(); // No need to make a request if quantity is already 1
+        }
+        const product = { ...item, quantity: item.quantity - 1 };
+        return updateCart('http://localhost:3001/update-cart', 'PUT', { product });
+    };
+
+    return {cartItems,isItemInCart,addToCart,removeFromCart,clearCart,increment,decrement};
 }
 export default CartApi;
