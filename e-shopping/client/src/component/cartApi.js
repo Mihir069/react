@@ -5,4 +5,4 @@ const   CartApi = () =>{
     const [cartItems,setCartItems] = useState([]);
     const [isItemInCart,setIsItemIncart] = useState({})
 }
-export default cartApi;
+export default CartApi;
