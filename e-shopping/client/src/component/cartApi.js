@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-
 const   CartApi = () =>{
     const [cartItems,setCartItems] = useState([]);
     const [isItemInCart,setIsItemInCart] = useState({});
@@ -56,18 +55,30 @@ const   CartApi = () =>{
             setIsItemInCart({});
         });
     };
-    const increment = (item) => {
+    const increament = (item) => {
         const product = { ...item, quantity: item.quantity + 1 };
         return updateCart('http://localhost:3001/update-cart', 'PUT', { product });
     };
-    const decrement = (item) => {
-        if (item.quantity === 1) {
-          return Promise.resolve(); // No need to make a request if quantity is already 1
+    const decreament = (item) => {
+        if(item.quantity === 1){
+          return;
         }
         const product = { ...item, quantity: item.quantity - 1 };
-        return updateCart('http://localhost:3001/update-cart', 'PUT', { product });
-    };
+          fetch(`http://localhost:3001/update-cart`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ product}),
+          })
+            .then((res) => res.json())
+            .then((data) =>{
+              console.log('decreament')
+              setCartItems(data)
+              
+            })
+      };
 
-    return {cartItems,isItemInCart,addToCart,removeFromCart,clearCart,increment,decrement};
+    return {cartItems,isItemInCart,addToCart,removeFromCart,clearCart,increament,decreament};
 }
 export default CartApi;
